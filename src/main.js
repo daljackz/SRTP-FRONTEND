@@ -7,6 +7,9 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import { ro } from 'element-plus/es/locale/index.mjs'
 
+//引入 router 路由模块控制页面切换
+import router from './router/index.js'
+
 const app = createApp(App)
 
 // 告诉 Vue 引擎，我们要使用 Element Plus 这个配件库
