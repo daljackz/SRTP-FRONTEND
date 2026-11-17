@@ -1,0 +1,10 @@
+scenario_id,scenario_name,period_start,period_end,trains_per_hour,avg_alighters_per_train,walk_min,demand_multiplier,source_id,description
+normal,平峰,18:00,19:00,10,80,8,1.00,S07-A,工作日晚间常规到达
+normal,平峰,19:00,21:00,12,90,8,1.00,S07-A,晚间到达相对集中
+normal,平峰,21:00,23:00,8,70,8,1.00,S07-A,夜间到达逐步回落
+holiday_peak,节假日高峰,18:00,19:00,12,100,9,1.00,S07-B,节假日提前到达
+holiday_peak,节假日高峰,19:00,21:30,15,120,9,1.00,S07-B,列车集中到达
+holiday_peak,节假日高峰,21:30,23:00,10,90,9,1.00,S07-B,返程末段客流
+bad_weather,恶劣天气,18:00,19:00,10,80,13,1.15,S07-C,步行时间延长且接驳需求增加
+bad_weather,恶劣天气,19:00,21:00,12,90,13,1.15,S07-C,步行时间延长且接驳需求增加
+bad_weather,恶劣天气,21:00,23:00,8,70,13,1.15,S07-C,步行时间延长且接驳需求增加

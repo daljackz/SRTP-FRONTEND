@@ -9,87 +9,212 @@
           <template #header>
             <div class="card-header">
               <el-icon><Setting /></el-icon>
-              <span>实时调度环境模拟</span>
+              <span>预测调度数据概况</span>
+              <span class="status-dot" :class="{ 'is-error': loadError }"></span>
             </div>
           </template>
-          <el-form :model="simParams" label-width="90px" size="default">
-            <el-form-item label="天气情况">
-              <el-select v-model="simParams.weather" placeholder="选择天气">
-                <el-option label="晴天 (能见度高)" value="sunny" />
-                <el-option label="雨天 (道路湿滑)" value="rainy" />
-                <el-option label="多云 (气候适宜)" value="cloudy" />
-              </el-select>
-            </el-form-item>
-            <el-form-item label="当前客流">
-              <el-slider v-model="simParams.passengerFlow" :max="5000" :step="100" show-input />
-            </el-form-item>
-            <el-form-item label="时段特征">
-              <el-select v-model="simParams.period" placeholder="选择时段">
-                <el-option label="工作日 - 早高峰" value="morning_peak" />
-                <el-option label="工作日 - 平峰" value="off_peak" />
-                <el-option label="节假日 - 枢纽大客流" value="holiday" />
-              </el-select>
-            </el-form-item>
-            <el-form-item label="突发路况">
-              <el-select v-model="simParams.blockage" placeholder="线路拥堵情况">
-                <el-option label="全线畅通" value="none" />
-                <el-option label="天府快线重度拥堵" value="tianfu_block" />
-                <el-option label="机场专线施工缓行" value="airport_block" />
-              </el-select>
-            </el-form-item>
-            <el-button type="primary" class="run-btn" @click="generateSchemes" :loading="isCalculating">
-              <el-icon style="margin-right: 5px;"><Cpu /></el-icon>
-              运行调度优化算法
+          <div v-if="isLoading && !meta" class="state-box">
+            <el-icon class="is-loading"><Cpu /></el-icon>
+            <span>正在读取模型结果...</span>
+          </div>
+
+          <div v-else-if="loadError && !meta" class="state-box error-state">
+            <span>{{ loadError }}</span>
+            <el-button type="primary" @click="loadDispatchData">重新加载</el-button>
+          </div>
+
+          <template v-else-if="meta">
+            <div class="meta-grid">
+              <div class="meta-item">
+                <span>预测日期</span>
+                <strong>{{ meta.date }}</strong>
+              </div>
+              <div class="meta-item">
+                <span>调度窗口</span>
+                <strong>{{ meta.window }}</strong>
+              </div>
+              <div class="meta-item">
+                <span>窗口内预测客流</span>
+                <strong>{{ formatDecimal(meta.raw_predicted_passengers_in_window) }} 人</strong>
+              </div>
+              <div class="meta-item">
+                <span>数据来源</span>
+                <strong>{{ meta.source }}</strong>
+              </div>
+            </div>
+
+            <el-alert
+              :title="meta.note"
+              type="warning"
+              :closable="false"
+              show-icon
+              class="data-note"
+            />
+
+            <el-button
+              class="refresh-btn"
+              :loading="isLoading"
+              @click="loadDispatchData"
+            >
+              刷新模型结果
             </el-button>
-          </el-form>
+          </template>
         </el-card>
 
-        <el-card class="glass-card scheme-card" shadow="hover" v-if="schemes.length > 0">
+        <el-card class="glass-card scheme-card" shadow="hover" v-if="schemes.length">
           <template #header>
             <div class="card-header">
               <el-icon><DataLine /></el-icon>
-              <span>智能调度方案决策</span>
+              <span>调度方案对比</span>
             </div>
           </template>
-          <el-radio-group v-model="selectedSchemeId" style="width: 100%;" @change="applyScheme">
-            <el-space direction="vertical" style="width: 100%; align-items: stretch;">
-              <el-radio 
-                v-for="scheme in schemes" 
-                :key="scheme.id" 
-                :value="scheme.id" 
-                border 
-                class="scheme-radio"
-                :class="{'is-active': selectedSchemeId === scheme.id}"
-              >
-                <div class="scheme-details">
-                  <strong style="font-size: 15px;">{{ scheme.name }}</strong>
-                  <span class="wait-time"><el-icon><Timer /></el-icon> 预测等待: {{ scheme.predictWaitTime }} min</span>
+          <el-radio-group v-model="selectedMode" class="mode-group" @change="applyMode">
+            <el-radio
+              v-for="scheme in schemes"
+              :key="scheme.id"
+              :value="scheme.id"
+              border
+              class="scheme-radio"
+            >
+              <div class="scheme-details">
+                <strong>{{ scheme.name }}</strong>
+                <span>{{ scheme.objective }}</span>
+              </div>
+
+              <div class="scheme-metrics">
+                <div>
+                  <span>总等待</span>
+                  <strong>{{ formatInteger(scheme.summary.total_wait_passenger_min) }}</strong>
+                  <small>人·分钟</small>
                 </div>
-                <div class="scheme-subtext">
-                  发车间隔: <span class="highlight">{{ scheme.interval }}</span> | 
-                  投入车辆: <span class="highlight">{{ scheme.totalBuses }}辆</span>
+                <div>
+                  <span>最长等待</span>
+                  <strong>{{ formatDecimal(scheme.summary.max_wait_min) }}</strong>
+                  <small>分钟</small>
                 </div>
-              </el-radio>
-            </el-space>
+              </div>
+
+              <div class="scheme-subtext">
+                班次 {{ scheme.summary.departures }} ·
+                峰值满载率 {{ formatPercent(scheme.summary.peak_load_factor) }}
+              </div>
+            </el-radio>
           </el-radio-group>
         </el-card>
 
       </el-col>
 
       <el-col :span="17" class="right-panel">
-        <el-card class="glass-card map-card" shadow="hover" style="padding: 0; overflow: hidden;">
-          <template #header>
-            <div class="card-header">
-              <el-icon><Location /></el-icon>
-              <span>接驳线路真实地理追踪网 (高德GIS)</span>
-              <span class="status-dot"></span>
+        <template v-if="selectedScheme">
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <span>服务乘客</span>
+              <strong>{{ formatInteger(selectedScheme.summary.passengers_served) }}</strong>
+              <small>人</small>
             </div>
-          </template>
-          <div id="real-map" class="map-container"></div>
-        </el-card>
+            <div class="kpi-card">
+              <span>总等待时间</span>
+              <strong>{{ formatInteger(selectedScheme.summary.total_wait_passenger_min) }}</strong>
+              <small>人·分钟</small>
+            </div>
+            <div class="kpi-card">
+              <span>平均等待</span>
+              <strong>{{ formatDecimal(selectedScheme.summary.avg_wait_min) }}</strong>
+              <small>分钟</small>
+            </div>
+            <div class="kpi-card">
+              <span>最长等待</span>
+              <strong>{{ formatDecimal(selectedScheme.summary.max_wait_min) }}</strong>
+              <small>分钟</small>
+            </div>
+            <div class="kpi-card">
+              <span>线路 P90 等待最大值</span>
+              <strong>{{ formatDecimal(selectedScheme.summary.p90_wait_min) }}</strong>
+              <small>分钟</small>
+            </div>
+            <div class="kpi-card" :class="{ 'warning-card': selectedScheme.summary.passengers_unserved > 0 }">
+              <span>未服务乘客</span>
+              <strong>{{ formatInteger(selectedScheme.summary.passengers_unserved) }}</strong>
+              <small>人</small>
+            </div>
+          </div>
 
-        <el-card class="glass-card bar-card" shadow="hover">
-          <div ref="barRef" class="bar-container"></div>
+          <el-row :gutter="20">
+            <el-col :xs="24" :xl="12">
+              <el-card class="glass-card map-card" shadow="hover" style="padding: 0; overflow: hidden; position: relative;">
+                <template #header>
+                  <div class="card-header">
+                    <el-icon><Location /></el-icon>
+                    <span>成都东站接驳路网示意</span>
+                  </div>
+                </template>
+                <div class="map-legend">
+                  <div class="legend-title">开题路网底图</div>
+                  <div class="legend-item"><div class="color-line" style="background: #F56C6C;"></div><span>47路</span></div>
+                  <div class="legend-item"><div class="color-line" style="background: #409EFF;"></div><span>50路</span></div>
+                  <div class="legend-item"><div class="color-line" style="background: #67C23A;"></div><span>135路</span></div>
+                </div>
+                <div id="real-map" class="map-container"></div>
+              </el-card>
+            </el-col>
+            <el-col :xs="24" :xl="12">
+              <el-card class="glass-card chart-card" shadow="hover">
+                <template #header>
+                  <div class="card-header">
+                    <el-icon><DataLine /></el-icon>
+                    <span>分线路等待时间</span>
+                  </div>
+                </template>
+                <div ref="metricChartRef" class="chart-container"></div>
+              </el-card>
+            </el-col>
+          </el-row>
+
+          <el-card class="glass-card table-card" shadow="hover">
+            <template #header>
+              <div class="card-header">
+                <el-icon><Tickets /></el-icon>
+                <span>分线路指标</span>
+              </div>
+            </template>
+            <el-table :data="selectedScheme.routeResults" row-key="route_id" class="dark-table" style="width: 100%;">
+              <el-table-column type="expand">
+                <template #default="{ row }">
+                  <div class="trip-detail">
+                    <div v-for="trip in row.timetable" :key="trip.trip_no" class="trip-chip">
+                      <strong>{{ trip.departure_time }}</strong>
+                      <span>{{ trip.load }}/{{ trip.capacity }} 人</span>
+                      <el-progress :percentage="Math.round(trip.load_rate * 100)" :stroke-width="5" :show-text="false" :color="loadRateColor(trip.load_rate)" />
+                      <small>{{ formatPercent(trip.load_rate) }}</small>
+                    </div>
+                  </div>
+                </template>
+              </el-table-column>
+              <el-table-column prop="route_name" label="线路" min-width="150" />
+              <el-table-column prop="capacity" label="容量" width="70" />
+              <el-table-column label="服务时段" width="120"><template #default="{ row }">{{ row.service_start }}-{{ row.service_end }}</template></el-table-column>
+              <el-table-column label="服务人数" width="100"><template #default="{ row }">{{ formatInteger(row.summary.passengers_served) }}</template></el-table-column>
+              <el-table-column label="总等待" width="100"><template #default="{ row }">{{ formatInteger(row.summary.total_wait_passenger_min) }}</template></el-table-column>
+              <el-table-column label="平均等待" width="100"><template #default="{ row }">{{ formatDecimal(row.summary.avg_wait_min) }} 分</template></el-table-column>
+              <el-table-column label="最长等待" width="100"><template #default="{ row }">{{ formatDecimal(row.summary.max_wait_min) }} 分</template></el-table-column>
+              <el-table-column label="P90" width="80"><template #default="{ row }">{{ formatDecimal(row.summary.p90_wait_min) }} 分</template></el-table-column>
+              <el-table-column label="班次" width="70"><template #default="{ row }">{{ row.summary.departures }}</template></el-table-column>
+              <el-table-column label="峰值满载率" width="110"><template #default="{ row }">{{ formatPercent(row.summary.peak_load_factor) }}</template></el-table-column>
+            </el-table>
+          </el-card>
+
+          <el-card class="glass-card schedule-card" shadow="hover">
+            <template #header>
+              <div class="card-header">
+                <el-icon><Clock /></el-icon>
+                <span>发车时刻与班次满载率</span>
+              </div>
+            </template>
+            <div ref="scheduleChartRef" class="schedule-chart"></div>
+          </el-card>
+        </template>
+        <el-card v-else class="glass-card empty-card" shadow="hover">
+          <el-empty description="等待调度模型结果" />
         </el-card>
       </el-col>
     </el-row>
@@ -97,13 +222,16 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, markRaw, nextTick } from 'vue'
+import { computed, markRaw, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import * as echarts from 'echarts'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { Setting, DataLine, Location, Cpu, Timer } from '@element-plus/icons-vue'
+import { Clock, Cpu, DataLine, Location, Setting, Tickets } from '@element-plus/icons-vue'
+import { fetchPredictedDispatch } from '../api/dispatch.js'
 
-// 修复 Vue/Vite 中 Leaflet 默认图标丢失的问题
+// 引入你准备好的公交路线数据
+import { line47Path, line50Path, line135Path } from '../data/busRoutes.js'
+
 import iconUrl from 'leaflet/dist/images/marker-icon.png'
 import iconShadowUrl from 'leaflet/dist/images/marker-shadow.png'
 const DefaultIcon = L.icon({
@@ -114,70 +242,89 @@ const DefaultIcon = L.icon({
 })
 L.Marker.prototype.options.icon = DefaultIcon
 
-// --- 状态管理 ---
-const simParams = reactive({
-  weather: 'sunny',
-  passengerFlow: 1800,
-  period: 'morning_peak',
-  blockage: 'none'
+const MODE_META = {
+  baseline: {
+    name: '固定班次',
+    objective: '统一间隔发车，作为效率与公平的对照基准',
+  },
+  efficiency: {
+    name: '效率优先',
+    objective: '最小化所有乘客的总等待时间',
+  },
+  fairness: {
+    name: '公平优先',
+    objective: '优先压低单条线路的最长等待时间',
+  },
+}
+
+const dispatchData = ref(null)
+const meta = computed(() => dispatchData.value?.meta || null)
+const loadError = ref('')
+const selectedMode = ref('')
+const metricChartRef = ref(null)
+const scheduleChartRef = ref(null)
+let metricChart = null
+let scheduleChart = null
+let abortController = null
+
+const isLoading = ref(false)
+const schemes = computed(() => {
+  if (!dispatchData.value?.results) return []
+  return dispatchData.value.results.map((result) => ({
+    id: result.mode,
+    ...(MODE_META[result.mode] || { name: result.mode, objective: '' }),
+    summary: result.summary,
+    routeResults: result.route_results.map((routeResult) => ({
+      ...routeResult,
+      timetable: routeResult.timetable || [],
+    })),
+  }))
 })
 
-const isCalculating = ref(false)
-const schemes = ref([])
-const selectedSchemeId = ref(null)
+const selectedScheme = computed(
+  () => schemes.value.find((scheme) => scheme.id === selectedMode.value) || null,
+)
 
-// --- 动态背景 ---
-const backgroundStyle = computed(() => {
-  const bgMap = {
-    sunny: 'url(public/tianfu_square_sunny.jpg), linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%)',
-    rainy: 'url(public/wuhouci_rainy.jpeg), linear-gradient(to bottom, #434343 0%, #000000 100%)',
-    cloudy: 'url(public/xipu_shuniu_cloudy.jpg), linear-gradient(to bottom, #8e9eab 0%, #eef2f3 100%)'
-  }
-  return {
-    backgroundImage: bgMap[simParams.weather],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    transition: 'background-image 1s ease-in-out'
-  }
-})
+const backgroundStyle = {
+  backgroundImage: 'url(/tianfu_square_sunny.jpg), linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+}
 
-// --- ECharts 和 Leaflet 实例 ---
-const barRef = ref(null)
-let barChart = null
 let mapInstance = null
-let routeLayers = L.layerGroup() // 管理路线的图层组
+let routeLayers = L.layerGroup()
 
-// 真实地理坐标设定 (成都)
+const formatInteger = (value) => Number(value || 0).toLocaleString('zh-CN', {
+  maximumFractionDigits: 0,
+})
+
+const formatDecimal = (value, digits = 1) => Number(value || 0).toFixed(digits)
+
+const formatPercent = (value) => `${(Number(value || 0) * 100).toFixed(1)}%`
+
+const loadRateColor = (value) => {
+  if (value >= 0.9) return '#ff4d4f'
+  if (value >= 0.7) return '#faad14'
+  return '#52c41a'
+}
+
 const locations = {
-  hub: { name: '犀浦枢纽', coords: [30.760, 103.968] },
-  dest1: { name: '九里校区', coords: [30.697, 104.053] },
-  dest2: { name: '天府广场', coords: [30.659, 104.065] },
-  dest3: { name: '双流机场', coords: [30.579, 103.947] }
+  hub: { name: '成都东站', coords: [30.628, 104.140] },
+  dest47: { name: '九眼桥', coords: [30.643, 104.086] },
+  dest50: { name: '火车南站', coords: [30.608, 104.066] },
+  dest135: { name: '川师大', coords: [30.612, 104.108] }
 }
 
-const initCharts = () => {
-  if (barRef.value) {
-    barChart = markRaw(echarts.init(barRef.value))
-    updateBarChart()
-  }
-  initLeafletMap()
-
-  window.addEventListener('resize', () => {
-    if (barChart) barChart.resize()
-    if (mapInstance) mapInstance.invalidateSize()
-  })
-}
 
 const initLeafletMap = () => {
-  // 视角居中于成都，缩放层级 11
+  if (mapInstance || !document.getElementById('real-map')) return
   mapInstance = L.map('real-map', {
-    center: [30.680, 104.000],
-    zoom: 11,
+    center: [30.620, 104.115],
+    zoom: 13,
     zoomControl: false, 
     attributionControl: false
   })
 
-  // 引入公开的高德地图瓦片 (速度快，全中文)
   L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
     subdomains: ['1', '2', '3', '4'],
     maxZoom: 19
@@ -185,162 +332,193 @@ const initLeafletMap = () => {
 
   mapInstance.addLayer(routeLayers)
 
-  // 绘制固定的站点 Marker
-  const createMarker = (loc, isHub = false) => {
-    const color = isHub ? '#ffeb3b' : '#00f2fe'
+  const createMarker = (loc, isHub = false, color = '#00f2fe') => {
     const markerHtml = `
       <div style="background-color: ${color}; width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 0 10px ${color}; border: 2px solid #fff;"></div>
-      <div style="color: #fff; font-weight: bold; font-size: 13px; margin-top: 4px; text-shadow: 1px 1px 3px #000; width: 60px; text-align: center; margin-left: -23px;">${loc.name}</div>
+      <div style="color: #fff; font-weight: bold; font-size: 13px; margin-top: 4px; text-shadow: 1px 1px 3px #000; width: 100px; text-align: center; margin-left: -43px;">${loc.name}</div>
     `
     L.marker(loc.coords, {
       icon: L.divIcon({ html: markerHtml, className: 'custom-leaflet-marker' })
     }).addTo(mapInstance)
   }
 
-  createMarker(locations.hub, true)
-  createMarker(locations.dest1)
-  createMarker(locations.dest2)
-  createMarker(locations.dest3)
+  // 为终点加上对应的线路颜色以供辨认
+  createMarker(locations.hub, true, '#ffeb3b') // 黄色东站枢纽
+  createMarker(locations.dest47, false, '#F56C6C') // 红色
+  createMarker(locations.dest50, false, '#409EFF') // 蓝色
+  createMarker(locations.dest135, false, '#67C23A') // 绿色
 
   drawRoutes()
 }
 
-// 绘制/更新 Leaflet 路网
+// 🌟 核心修改：移除动画，改用带颜色的普通线
 const drawRoutes = () => {
   if (!mapInstance) return
   routeLayers.clearLayers() 
 
-  const isTianfuBlocked = simParams.blockage === 'tianfu_block'
-  const isAirportBlocked = simParams.blockage === 'airport_block'
-
-  const drawLine = (start, end, status) => {
-    let color = '#4facfe' 
-    let className = 'flow-line-normal' 
-
-    if (status === 'blocked_red') {
-      color = '#ff4d4f' 
-      className = 'flow-line-slow' 
-    } else if (status === 'blocked_orange') {
-      color = '#faad14' 
-      className = 'flow-line-slow' 
-    }
-
-    // 底线
-    L.polyline([start, end], {
-      color: color,
-      weight: 4,
-      opacity: 0.3
-    }).addTo(routeLayers)
-
-    // 上层流光线
-    L.polyline([start, end], {
-      color: color,
-      weight: 3,
-      opacity: 0.9,
-      className: className 
-    }).addTo(routeLayers)
-  }
-
-  drawLine(locations.hub.coords, locations.dest1.coords, 'normal')
-  drawLine(locations.hub.coords, locations.dest2.coords, isTianfuBlocked ? 'blocked_red' : 'normal')
-  drawLine(locations.hub.coords, locations.dest3.coords, isAirportBlocked ? 'blocked_orange' : 'normal')
+  L.polyline(line47Path, { color: '#F56C6C', weight: 5, opacity: 0.85 }).addTo(routeLayers)
+  L.polyline(line50Path, { color: '#409EFF', weight: 5, opacity: 0.85 }).addTo(routeLayers)
+  L.polyline(line135Path, { color: '#67C23A', weight: 5, opacity: 0.85 }).addTo(routeLayers)
 }
 
-// 更新下方运力柱状图
-const updateBarChart = (scheme = null) => {
-  if (!barChart) return
+const updateMetricChart = () => {
+  if (!metricChart || !selectedScheme.value) return
+  const routeResults = selectedScheme.value.routeResults
 
-  const lineData = scheme ? scheme.lineDetails : [
-    { name: '九里校区专线', buses: 6 },
-    { name: '天府广场快线', buses: 10 },
-    { name: '双流机场专线', buses: 4 }
-  ]
-
-  const barOption = {
-    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    grid: { left: '3%', right: '8%', bottom: '5%', top: '15%', containLabel: true },
+  metricChart.setOption({
+    color: ['#4facfe', '#ffd666', '#b37feb'],
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      backgroundColor: 'rgba(15, 23, 42, 0.95)',
+      borderColor: 'rgba(79, 172, 254, 0.5)',
+      textStyle: { color: '#fff' },
+    },
+    legend: { top: 0, textStyle: { color: '#dbeafe' } },
+    grid: { left: '3%', right: '4%', bottom: '8%', top: '18%', containLabel: true },
     xAxis: {
+      type: 'category',
+      data: routeResults.map((item) => item.route_name),
+      axisLabel: { color: '#e5eaf3', interval: 0 },
+      axisLine: { lineStyle: { color: 'rgba(255,255,255,0.25)' } },
+    },
+    yAxis: {
       type: 'value',
-      axisLabel: { color: '#e5eaf3' },
-      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
+      name: '分钟',
+      nameTextStyle: { color: '#a1b0c9' },
+      axisLabel: { color: '#a1b0c9' },
+      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.08)' } },
+    },
+    series: [
+      { name: '平均等待', type: 'bar', barMaxWidth: 24, data: routeResults.map((item) => item.summary.avg_wait_min) },
+      { name: '最长等待', type: 'bar', barMaxWidth: 24, data: routeResults.map((item) => item.summary.max_wait_min) },
+      { name: 'P90等待', type: 'line', symbolSize: 8, data: routeResults.map((item) => item.summary.p90_wait_min) },
+    ],
+  }, true)
+}
+
+const updateScheduleChart = () => {
+  if (!scheduleChart || !selectedScheme.value) return
+  const routeResults = selectedScheme.value.routeResults
+  const maxTrips = Math.max(...routeResults.map((item) => item.timetable.length), 0)
+
+  const points = routeResults.flatMap((routeResult, routeIndex) =>
+    routeResult.timetable.map((trip) => ({
+      value: [
+        trip.trip_no - 1,
+        routeIndex,
+        trip.load_rate,
+        trip.load,
+        trip.capacity,
+        trip.departure_time,
+        routeResult.route_name,
+      ],
+    })),
+  )
+
+  scheduleChart.setOption({
+    tooltip: {
+      formatter: (params) => {
+        const [, , , load, capacity, departureTime, routeName] = params.value
+        return [
+          `<strong>${routeName}</strong>`,
+          `发车：${departureTime}`,
+          `载客：${load} / ${capacity} 人`,
+          `满载率：${formatPercent(params.value[2])}`,
+        ].join('<br/>')
+      },
+      backgroundColor: 'rgba(15, 23, 42, 0.96)',
+      borderColor: 'rgba(79, 172, 254, 0.5)',
+      textStyle: { color: '#fff' },
+    },
+    grid: { left: '4%', right: '5%', bottom: '15%', top: '10%', containLabel: true },
+    xAxis: {
+      type: 'category',
+      data: Array.from({ length: maxTrips }, (_, index) => index + 1),
+      name: '班次序号',
+      nameTextStyle: { color: '#a1b0c9' },
+      axisLabel: { color: '#a1b0c9', interval: Math.max(Math.floor(maxTrips / 10) - 1, 0) },
+      axisLine: { lineStyle: { color: 'rgba(255,255,255,0.25)' } },
+      splitLine: { show: true, lineStyle: { color: 'rgba(255,255,255,0.04)' } },
     },
     yAxis: {
       type: 'category',
-      data: lineData.map(d => d.name),
-      axisLabel: { color: '#fff', fontSize: 13, fontWeight: 'bold' }
+      data: routeResults.map((item) => item.route_name),
+      axisLabel: { color: '#e5eaf3' },
+      axisLine: { lineStyle: { color: 'rgba(255,255,255,0.25)' } },
+    },
+    visualMap: {
+      min: 0, max: 1, dimension: 2, orient: 'horizontal', left: 'center', bottom: 0,
+      text: ['高满载', '低满载'],
+      textStyle: { color: '#a1b0c9' },
+      inRange: { color: ['#237804', '#52c41a', '#faad14', '#ff4d4f'] },
     },
     series: [{
-      name: '投入运力(辆)',
-      type: 'bar',
-      barWidth: '35%',
-      data: lineData.map(d => d.buses),
-      itemStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-          { offset: 0, color: '#36D1DC' },
-          { offset: 1, color: '#5B86E5' }
-        ]),
-        borderRadius: [0, 8, 8, 0]
-      },
-      label: { show: true, position: 'right', color: '#fff', formatter: '{c} 辆' }
-    }]
-  }
-  barChart.setOption(barOption)
+      name: '班次满载率',
+      type: 'scatter',
+      data: points,
+      symbolSize: (value) => 8 + Number(value[2] || 0) * 14,
+      emphasis: { scale: 1.3 },
+    }],
+  }, true)
 }
 
-// --- 算法模拟逻辑 ---
-const generateSchemes = () => {
-  isCalculating.value = true
-  
-  setTimeout(() => {
-    const base = simParams.passengerFlow / 1000
-    const tianfuPenalty = simParams.blockage === 'tianfu_block' ? 0.6 : 1
-    const airportPenalty = simParams.blockage === 'airport_block' ? 0.7 : 1
-
-    schemes.value = [
-      {
-        id: 'opt1',
-        name: '时间最优方案 (动态规划 DP)',
-        predictWaitTime: (4.5 + base * 1.2).toFixed(1),
-        interval: '5分钟/班',
-        totalBuses: Math.floor(18 + base * 3),
-        lineDetails: [
-          { name: '九里校区专线', buses: Math.floor(6 + base) },
-          { name: '天府广场快线', buses: Math.floor((10 + base * 1.5) * tianfuPenalty) },
-          { name: '双流机场专线', buses: Math.floor((4 + base) * airportPenalty) }
-        ]
-      },
-      {
-        id: 'opt2',
-        name: '能效均衡方案 (贪心启发式)',
-        predictWaitTime: (8.2 + base * 1.5).toFixed(1),
-        interval: '10分钟/班',
-        totalBuses: Math.floor(12 + base * 1.5),
-        lineDetails: [
-          { name: '九里校区专线', buses: Math.floor(4 + base*0.5) },
-          { name: '天府广场快线', buses: Math.floor((6 + base) * tianfuPenalty) },
-          { name: '双流机场专线', buses: Math.floor((3 + base*0.5) * airportPenalty) }
-        ]
-      }
-    ]
-    
-    selectedSchemeId.value = schemes.value[0].id
-    applyScheme(selectedSchemeId.value)
-    isCalculating.value = false
-  }, 1000)
+const updateCharts = () => {
+  updateMetricChart()
+  updateScheduleChart()
 }
 
-const applyScheme = (id) => {
-  const scheme = schemes.value.find(s => s.id === id)
-  if (scheme) {
-    updateBarChart(scheme)
-    drawRoutes() 
+const applyMode = (mode) => {
+  selectedMode.value = mode
+  nextTick(updateCharts)
+}
+
+const loadDispatchData = async () => {
+  if (abortController) abortController.abort()
+  abortController = new AbortController()
+  isLoading.value = true
+  loadError.value = ''
+
+  try {
+    const data = await fetchPredictedDispatch(abortController.signal)
+    dispatchData.value = data
+    selectedMode.value = (data.results || []).some((item) => item.mode === 'efficiency')
+      ? 'efficiency'
+      : data.results?.[0]?.mode || ''
+    await nextTick()
+    if (!metricChart && metricChartRef.value) {
+      metricChart = markRaw(echarts.init(metricChartRef.value))
+    }
+    if (!scheduleChart && scheduleChartRef.value) {
+      scheduleChart = markRaw(echarts.init(scheduleChartRef.value))
+    }
+    if (!mapInstance) initLeafletMap()
+    updateCharts()
+  } catch (error) {
+    if (error.name !== 'AbortError') loadError.value = error.message || '无法获取调度结果'
+  } finally {
+    isLoading.value = false
   }
 }
 
-onMounted(() => {
-  nextTick(() => {
-    initCharts()
-  })
+const handleResize = () => {
+  metricChart?.resize()
+  scheduleChart?.resize()
+  mapInstance?.invalidateSize()
+}
+
+onMounted(async () => {
+  await nextTick()
+  window.addEventListener('resize', handleResize)
+  await loadDispatchData()
+})
+
+onBeforeUnmount(() => {
+  abortController?.abort()
+  window.removeEventListener('resize', handleResize)
+  metricChart?.dispose()
+  scheduleChart?.dispose()
+  mapInstance?.remove()
 })
 </script>
 
@@ -355,7 +533,7 @@ onMounted(() => {
 .overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(10, 15, 30, 0.65);
+  background: rgba(10, 15, 30, 0.7);
   z-index: 0;
 }
 
@@ -366,8 +544,8 @@ onMounted(() => {
 }
 
 .glass-card {
-  background: rgba(20, 25, 40, 0.7) !important;
-  border: 1px solid rgba(100, 150, 255, 0.2);
+  background: rgba(20, 25, 40, 0.75) !important;
+  border: 1px solid rgba(100, 150, 255, 0.25);
   backdrop-filter: blur(12px);
   color: white;
   border-radius: 12px;
@@ -383,15 +561,16 @@ onMounted(() => {
 :deep(.el-form-item__label) { color: #a1b0c9; font-weight: bold; }
 :deep(.el-radio.is-bordered) {
   border-color: rgba(100, 150, 255, 0.3);
-  background: rgba(0, 0, 0, 0.2);
-  margin-bottom: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
   height: auto;
-  padding: 12px;
+  padding: 15px;
   border-radius: 8px;
 }
-:deep(.el-radio.is-bordered.is-active) {
+:deep(.el-radio.is-bordered.is-checked) {
   border-color: #4facfe;
   background: rgba(79, 172, 254, 0.15);
+  box-shadow: inset 0 0 10px rgba(79, 172, 254, 0.2);
 }
 :deep(.el-radio__label) { color: white !important; width: 100%; display: block; }
 
@@ -407,11 +586,12 @@ onMounted(() => {
 
 .run-btn {
   width: 100%;
-  height: 40px;
-  font-size: 15px;
+  height: 42px;
+  font-size: 16px;
   font-weight: bold;
   background: linear-gradient(90deg, #00c6fb 0%, #005bea 100%);
   border: none;
+  border-radius: 8px;
 }
 .run-btn:hover {
   opacity: 0.9;
@@ -420,13 +600,24 @@ onMounted(() => {
 
 .scheme-card { margin-top: 20px; }
 .scheme-details {
+  margin-bottom: 10px;
+}
+
+.metrics-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
-.wait-time { color: #ffeb3b; font-weight: bold; font-size: 14px; }
-.scheme-subtext { font-size: 13px; color: #a1b0c9; }
+.metric-item { display: flex; flex-direction: column; }
+.metric-label { font-size: 12px; color: #a1b0c9; margin-bottom: 4px; }
+.metric-value { font-size: 18px; font-weight: bold; }
+.efficiency { color: #52c41a; }
+.fairness { color: #ffeb3b; }
+
+.scheme-subtext { font-size: 13px; color: #a1b0c9; margin-top: 5px;}
 .highlight { color: #4facfe; font-weight: bold; }
 
 .right-panel {
@@ -439,17 +630,64 @@ onMounted(() => {
 
 .map-container { 
   width: 100%; 
-  height: 420px; 
+  height: 400px;
   background-color: transparent !important; 
 }
 
-/* 高能黑科技：用 CSS 滤镜将明亮的高德瓦片反相，呈现暗黑科幻风格 */
+/* 🌟 新增：地图图例的悬浮样式 */
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(20, 25, 40, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 12px 15px;
+  border-radius: 8px;
+  z-index: 1000; /* 确保悬浮在地图上方 */
+  pointer-events: none;
+}
+.legend-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 4px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #e5eaf3;
+}
+.color-line {
+  width: 20px;
+  height: 4px;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+.color-line.dashed {
+  background: transparent !important;
+  border-bottom: 2px dashed #fff;
+}
+.blocked-tag {
+  margin-left: 8px;
+  background: #ff4d4f;
+  color: white;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+/* CSS 滤镜高德暗黑地图 */
 :deep(.leaflet-tile-pane) {
   filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(120%);
   transition: filter 0.5s;
 }
 
-.bar-card { height: 260px; }
+.bar-card { height: 280px; }
 .bar-container { width: 100%; height: 100%; }
 
 .status-dot {
@@ -467,17 +705,213 @@ onMounted(() => {
   100% { opacity: 1; }
 }
 
-/* 路线动画 */
-:deep(.flow-line-normal) {
-  stroke-dasharray: 10 20;
-  animation: dash 1s linear infinite;
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-:deep(.flow-line-slow) {
-  stroke-dasharray: 5 30;
-  animation: dash 3s linear infinite; 
+
+.mode-group {
+  width: 100%;
 }
-@keyframes dash {
-  from { stroke-dashoffset: 30; }
-  to { stroke-dashoffset: 0; }
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
+
+.meta-item {
+  min-height: 62px;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meta-item span {
+  color: #a1b0c9;
+  font-size: 12px;
+}
+
+.meta-item strong {
+  color: #e5eaf3;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.data-note {
+  margin-top: 12px;
+}
+
+.refresh-btn {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.state-box {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #a1b0c9;
+}
+
+.error-state {
+  color: #ffb4b4;
+  text-align: center;
+}
+
+.scheme-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scheme-details strong {
+  font-size: 15px;
+}
+
+.scheme-details span {
+  color: #a1b0c9;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.scheme-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.scheme-metrics > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+}
+
+.scheme-metrics span {
+  color: #a1b0c9;
+  font-size: 12px;
+}
+
+.scheme-metrics strong {
+  color: #4facfe;
+  font-size: 18px;
+}
+
+.scheme-metrics small {
+  grid-column: 1 / -1;
+  color: #7f8da8;
+  font-size: 11px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kpi-card {
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(20, 25, 40, 0.78);
+  border: 1px solid rgba(100, 150, 255, 0.25);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kpi-card span { color: #a1b0c9; font-size: 12px; }
+.kpi-card strong { color: #fff; font-size: 22px; }
+.kpi-card small { color: #7f8da8; }
+.kpi-card.warning-card { border-color: rgba(255, 77, 79, 0.65); }
+
+.map-card,
+.chart-card {
+  height: 100%;
+}
+
+.chart-container {
+  width: 100%;
+  height: 400px;
+}
+
+.table-card,
+.schedule-card {
+  width: 100%;
+}
+
+.dark-table {
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: rgba(79, 172, 254, 0.08);
+  --el-table-row-hover-bg-color: rgba(79, 172, 254, 0.1);
+  --el-table-border-color: rgba(255, 255, 255, 0.08);
+  --el-table-text-color: #e5eaf3;
+  --el-table-header-text-color: #a1b0c9;
+}
+
+.dark-table :deep(.el-table__expanded-cell) {
+  background: rgba(0, 0, 0, 0.16) !important;
+}
+
+.trip-detail {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+  padding: 8px;
+}
+
+.trip-chip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 8px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.trip-chip strong {
+  color: #4facfe;
+  font-size: 12px;
+}
+
+.trip-chip span,
+.trip-chip small {
+  color: #a1b0c9;
+  font-size: 11px;
+}
+
+.trip-chip :deep(.el-progress) {
+  grid-column: 1 / -1;
+}
+
+.schedule-chart {
+  width: 100%;
+  height: 360px;
+}
+
+.empty-card {
+  min-height: 420px;
+}
+
+@media (max-width: 1400px) {
+  .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .kpi-grid, .meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* 删除了之前的流光动画样式 */
 </style>

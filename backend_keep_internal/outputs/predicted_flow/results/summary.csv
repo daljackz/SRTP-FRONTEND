@@ -1,0 +1,4 @@
+﻿scenario_id,date,mode,passengers_served,passengers_unserved,total_wait_passenger_min,avg_wait_min,max_wait_min,p90_wait_min,departures,max_load,mean_load,peak_load_factor
+predicted_2026_11_14,2026-11-14,baseline,2545,0,17947.0,7.051866404715128,20.0,13.0,160,85,15.90625,1.0
+predicted_2026_11_14,2026-11-14,efficiency,2545,0,9255.0,3.6365422396856584,17.0,8.0,160,45,15.90625,0.6
+predicted_2026_11_14,2026-11-14,fairness,2545,0,10533.0,4.138703339882122,9.0,8.0,160,67,15.90625,0.9285714285714286

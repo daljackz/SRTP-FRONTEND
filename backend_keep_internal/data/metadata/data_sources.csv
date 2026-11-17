@@ -1,0 +1,16 @@
+source_id,dataset,description,source_type,source_reference,retrieved_at,reliability,notes
+S01,station_context,成都东站站位与站区范围,公开地图数据,OpenStreetMap relation 9324932,2026-11-16,中,用于确认站区中心坐标
+S02,route_K12,快速公交K12线及东广场方向,公开地图数据,OpenStreetMap relation 11890765,2026-11-16,中,终点站信息已在OSM中出现
+S03,route_K4,快速公交K4线候选线路,公开地图数据,OpenStreetMap relation 12471879,2026-11-16,低,仅确认线路位于检索缓冲区
+S04,route_K6,快速公交K6线候选线路,公开地图数据,OpenStreetMap relation 13546458,2026-11-16,低,仅确认线路位于检索缓冲区
+S05,route_K7,快速公交K7线候选线路,公开地图数据,OpenStreetMap relation 14355259,2026-11-16,低,仅确认线路位于检索缓冲区
+S06,route_TFU1,天府国际机场公交专线候选线路,公开地图数据,OpenStreetMap relations 18860960 and 18860961,2026-11-16,低,本版优化未使用
+S07-A,normal_scenario,平峰列车到达与客流情景,情景假设,项目组基于运营规律构造,2026-11-16,待校准,需用12306或运营时刻表替换
+S07-B,holiday_scenario,节假日集中到达情景,情景假设,项目组基于运营规律构造,2026-11-16,待校准,需用节假日实际客流校准
+S07-C,bad_weather_scenario,恶劣天气情景,情景假设,项目组基于运营规律构造,2026-11-16,待校准,步行时间与需求比例均为假设
+S08,bus_capacity,车型额定容量,参数假设,按常见城市公交车型取值,2026-11-16,待校准,后续按线路实际配车替换
+S09,bus_headway,发车间隔上下限,参数假设,项目组设定,2026-11-16,待校准,用于形成可行班次范围
+S10,walk_time,站台步行时间,参数假设,项目组设定,2026-11-16,待校准,后续可由站内步行调查或视频数据替换
+S11,demand_share,线路需求分担率,参数假设,本版采用四线均分,2026-11-16,待校准,后续由公交刷卡或客流数据标定
+S12,train_timetable,列车到站时刻表,待接入,12306或车站运营数据,未获取,低,当前使用S07情景生成，不得表述为真实时刻表
+S13,predicted_flow,分钟级预测公交客流,模型输出,passenger_flow.db,2026-11-16,中,由列车定员、天气和步行分布生成，系数仍为手工设定

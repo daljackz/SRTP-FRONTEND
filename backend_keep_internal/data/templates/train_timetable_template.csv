@@ -1,0 +1,4 @@
+scenario_id,train_id,scheduled_arrival,estimated_alighters,walk_min,source_id
+holiday_peak,G0001,18:05,180,9,S12
+holiday_peak,G0002,18:12,220,8,S12
+holiday_peak,G0003,18:20,260,10,S12

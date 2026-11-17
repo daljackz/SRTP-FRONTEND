@@ -1,0 +1,5 @@
+route_id,route_name,origin,destination,capacity,min_headway_min,max_headway_min,service_start,service_end,travel_min,demand_share,planned_trips,source_id,verification
+K12,快速公交K12线,成都东客站东广场站,中海国际,85,5,20,18:00,23:00,45,0.25,40,S02,OSM终点站已确认
+K4,快速公交K4线,成都东站片区,线路远端,80,5,20,18:00,23:00,50,0.25,40,S03,站点位于OSM检索缓冲区，具体上客站待核验
+K6,快速公交K6线,成都东站片区,线路远端,75,5,20,18:00,23:00,55,0.25,40,S04,站点位于OSM检索缓冲区，具体上客站待核验
+K7,快速公交K7线,成都东站片区,线路远端,70,5,20,18:00,23:00,60,0.25,40,S05,站点位于OSM检索缓冲区，具体上客站待核验

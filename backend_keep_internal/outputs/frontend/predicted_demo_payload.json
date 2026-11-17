@@ -1,0 +1,4293 @@
+{
+  "meta": {
+    "scenario_id": "predicted_2026_11_14",
+    "date": "2026-11-14",
+    "window": "00:00-09:00",
+    "source": "passenger_flow.db",
+    "raw_predicted_passengers_in_window": 2545.3184310000033,
+    "note": "客流预测系数仍为手工设定，线路拆分为均分假设"
+  },
+  "routes": [
+    {
+      "route_id": "K12",
+      "route_name": "快速公交K12线",
+      "origin": "成都东客站东广场站",
+      "destination": "中海国际",
+      "capacity": 85,
+      "min_headway_min": 5,
+      "max_headway_min": 20,
+      "service_start": "00:00",
+      "service_end": "09:00",
+      "travel_min": 45,
+      "demand_share": 0.25,
+      "planned_trips": 40,
+      "source_id": "S02",
+      "verification": "OSM终点站已确认"
+    },
+    {
+      "route_id": "K4",
+      "route_name": "快速公交K4线",
+      "origin": "成都东站片区",
+      "destination": "线路远端",
+      "capacity": 80,
+      "min_headway_min": 5,
+      "max_headway_min": 20,
+      "service_start": "00:00",
+      "service_end": "09:00",
+      "travel_min": 50,
+      "demand_share": 0.25,
+      "planned_trips": 40,
+      "source_id": "S03",
+      "verification": "站点位于OSM检索缓冲区，具体上客站待核验"
+    },
+    {
+      "route_id": "K6",
+      "route_name": "快速公交K6线",
+      "origin": "成都东站片区",
+      "destination": "线路远端",
+      "capacity": 75,
+      "min_headway_min": 5,
+      "max_headway_min": 20,
+      "service_start": "00:00",
+      "service_end": "09:00",
+      "travel_min": 55,
+      "demand_share": 0.25,
+      "planned_trips": 40,
+      "source_id": "S04",
+      "verification": "站点位于OSM检索缓冲区，具体上客站待核验"
+    },
+    {
+      "route_id": "K7",
+      "route_name": "快速公交K7线",
+      "origin": "成都东站片区",
+      "destination": "线路远端",
+      "capacity": 70,
+      "min_headway_min": 5,
+      "max_headway_min": 20,
+      "service_start": "00:00",
+      "service_end": "09:00",
+      "travel_min": 60,
+      "demand_share": 0.25,
+      "planned_trips": 40,
+      "source_id": "S05",
+      "verification": "站点位于OSM检索缓冲区，具体上客站待核验"
+    }
+  ],
+  "results": [
+    {
+      "mode": "baseline",
+      "summary": {
+        "passengers_served": 2545,
+        "passengers_unserved": 0,
+        "total_wait_passenger_min": 17947.0,
+        "avg_wait_min": 7.051866404715128,
+        "max_wait_min": 20.0,
+        "p90_wait_min": 13.0,
+        "departures": 160,
+        "max_load": 85,
+        "mean_load": 15.90625,
+        "peak_load_factor": 1.0
+      },
+      "route_results": [
+        {
+          "route_id": "K12",
+          "route_name": "快速公交K12线",
+          "origin": "成都东客站东广场站",
+          "destination": "中海国际",
+          "capacity": 85,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "OSM终点站已确认",
+          "summary": {
+            "passengers_served": 637,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 4282.0,
+            "avg_wait_min": 6.722135007849293,
+            "max_wait_min": 16.0,
+            "p90_wait_min": 12.0,
+            "departures": 40,
+            "max_load": 85,
+            "mean_load": 15.925,
+            "peak_load_factor": 1.0
+          },
+          "departures": [
+            "00:00",
+            "00:14",
+            "00:28",
+            "00:42",
+            "00:55",
+            "01:09",
+            "01:23",
+            "01:37",
+            "01:51",
+            "02:05",
+            "02:18",
+            "02:32",
+            "02:46",
+            "03:00",
+            "03:14",
+            "03:28",
+            "03:42",
+            "03:55",
+            "04:09",
+            "04:23",
+            "04:37",
+            "04:51",
+            "05:05",
+            "05:18",
+            "05:32",
+            "05:46",
+            "06:00",
+            "06:14",
+            "06:28",
+            "06:42",
+            "06:55",
+            "07:09",
+            "07:23",
+            "07:37",
+            "07:51",
+            "08:05",
+            "08:18",
+            "08:32",
+            "08:46",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:14",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:28",
+              "load": 14,
+              "capacity": 85,
+              "load_rate": 0.1647
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:42",
+              "load": 26,
+              "capacity": 85,
+              "load_rate": 0.3059
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:55",
+              "load": 36,
+              "capacity": 85,
+              "load_rate": 0.4235
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:09",
+              "load": 59,
+              "capacity": 85,
+              "load_rate": 0.6941
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:23",
+              "load": 57,
+              "capacity": 85,
+              "load_rate": 0.6706
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:37",
+              "load": 36,
+              "capacity": 85,
+              "load_rate": 0.4235
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:51",
+              "load": 26,
+              "capacity": 85,
+              "load_rate": 0.3059
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "02:05",
+              "load": 17,
+              "capacity": 85,
+              "load_rate": 0.2
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "02:18",
+              "load": 4,
+              "capacity": 85,
+              "load_rate": 0.0471
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "02:32",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:46",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "03:00",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "03:14",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "03:28",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:42",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:55",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "04:09",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:23",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:37",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:51",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:05",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:18",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:32",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "05:46",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:00",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:14",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "06:28",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "06:42",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "06:55",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:09",
+              "load": 4,
+              "capacity": 85,
+              "load_rate": 0.0471
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "07:23",
+              "load": 3,
+              "capacity": 85,
+              "load_rate": 0.0353
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "07:37",
+              "load": 21,
+              "capacity": 85,
+              "load_rate": 0.2471
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "07:51",
+              "load": 63,
+              "capacity": 85,
+              "load_rate": 0.7412
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:05",
+              "load": 48,
+              "capacity": 85,
+              "load_rate": 0.5647
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:18",
+              "load": 78,
+              "capacity": 85,
+              "load_rate": 0.9176
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:32",
+              "load": 85,
+              "capacity": 85,
+              "load_rate": 1.0
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:46",
+              "load": 52,
+              "capacity": 85,
+              "load_rate": 0.6118
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 8,
+              "capacity": 85,
+              "load_rate": 0.0941
+            }
+          ]
+        },
+        {
+          "route_id": "K4",
+          "route_name": "快速公交K4线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 80,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 637,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 4339.0,
+            "avg_wait_min": 6.811616954474097,
+            "max_wait_min": 17.0,
+            "p90_wait_min": 12.0,
+            "departures": 40,
+            "max_load": 80,
+            "mean_load": 15.925,
+            "peak_load_factor": 1.0
+          },
+          "departures": [
+            "00:00",
+            "00:14",
+            "00:28",
+            "00:42",
+            "00:55",
+            "01:09",
+            "01:23",
+            "01:37",
+            "01:51",
+            "02:05",
+            "02:18",
+            "02:32",
+            "02:46",
+            "03:00",
+            "03:14",
+            "03:28",
+            "03:42",
+            "03:55",
+            "04:09",
+            "04:23",
+            "04:37",
+            "04:51",
+            "05:05",
+            "05:18",
+            "05:32",
+            "05:46",
+            "06:00",
+            "06:14",
+            "06:28",
+            "06:42",
+            "06:55",
+            "07:09",
+            "07:23",
+            "07:37",
+            "07:51",
+            "08:05",
+            "08:18",
+            "08:32",
+            "08:46",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:14",
+              "load": 1,
+              "capacity": 80,
+              "load_rate": 0.0125
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:28",
+              "load": 14,
+              "capacity": 80,
+              "load_rate": 0.175
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:42",
+              "load": 28,
+              "capacity": 80,
+              "load_rate": 0.35
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:55",
+              "load": 37,
+              "capacity": 80,
+              "load_rate": 0.4625
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:09",
+              "load": 59,
+              "capacity": 80,
+              "load_rate": 0.7375
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:23",
+              "load": 58,
+              "capacity": 80,
+              "load_rate": 0.725
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:37",
+              "load": 35,
+              "capacity": 80,
+              "load_rate": 0.4375
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:51",
+              "load": 27,
+              "capacity": 80,
+              "load_rate": 0.3375
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "02:05",
+              "load": 17,
+              "capacity": 80,
+              "load_rate": 0.2125
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "02:18",
+              "load": 4,
+              "capacity": 80,
+              "load_rate": 0.05
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "02:32",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:46",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "03:00",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "03:14",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "03:28",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:42",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:55",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "04:09",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:23",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:51",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:05",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:18",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:32",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "05:46",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:00",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:14",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "06:28",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "06:42",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "06:55",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:09",
+              "load": 4,
+              "capacity": 80,
+              "load_rate": 0.05
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "07:23",
+              "load": 3,
+              "capacity": 80,
+              "load_rate": 0.0375
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "07:37",
+              "load": 21,
+              "capacity": 80,
+              "load_rate": 0.2625
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "07:51",
+              "load": 63,
+              "capacity": 80,
+              "load_rate": 0.7875
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:05",
+              "load": 50,
+              "capacity": 80,
+              "load_rate": 0.625
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:18",
+              "load": 76,
+              "capacity": 80,
+              "load_rate": 0.95
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:32",
+              "load": 80,
+              "capacity": 80,
+              "load_rate": 1.0
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:46",
+              "load": 53,
+              "capacity": 80,
+              "load_rate": 0.6625
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 7,
+              "capacity": 80,
+              "load_rate": 0.0875
+            }
+          ]
+        },
+        {
+          "route_id": "K6",
+          "route_name": "快速公交K6线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 75,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 635,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 4579.0,
+            "avg_wait_min": 7.211023622047244,
+            "max_wait_min": 19.0,
+            "p90_wait_min": 13.0,
+            "departures": 40,
+            "max_load": 75,
+            "mean_load": 15.875,
+            "peak_load_factor": 1.0
+          },
+          "departures": [
+            "00:00",
+            "00:14",
+            "00:28",
+            "00:42",
+            "00:55",
+            "01:09",
+            "01:23",
+            "01:37",
+            "01:51",
+            "02:05",
+            "02:18",
+            "02:32",
+            "02:46",
+            "03:00",
+            "03:14",
+            "03:28",
+            "03:42",
+            "03:55",
+            "04:09",
+            "04:23",
+            "04:37",
+            "04:51",
+            "05:05",
+            "05:18",
+            "05:32",
+            "05:46",
+            "06:00",
+            "06:14",
+            "06:28",
+            "06:42",
+            "06:55",
+            "07:09",
+            "07:23",
+            "07:37",
+            "07:51",
+            "08:05",
+            "08:18",
+            "08:32",
+            "08:46",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:14",
+              "load": 1,
+              "capacity": 75,
+              "load_rate": 0.0133
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:28",
+              "load": 13,
+              "capacity": 75,
+              "load_rate": 0.1733
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:42",
+              "load": 29,
+              "capacity": 75,
+              "load_rate": 0.3867
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:55",
+              "load": 35,
+              "capacity": 75,
+              "load_rate": 0.4667
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:09",
+              "load": 59,
+              "capacity": 75,
+              "load_rate": 0.7867
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:23",
+              "load": 57,
+              "capacity": 75,
+              "load_rate": 0.76
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:37",
+              "load": 36,
+              "capacity": 75,
+              "load_rate": 0.48
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:51",
+              "load": 27,
+              "capacity": 75,
+              "load_rate": 0.36
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "02:05",
+              "load": 17,
+              "capacity": 75,
+              "load_rate": 0.2267
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "02:18",
+              "load": 5,
+              "capacity": 75,
+              "load_rate": 0.0667
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "02:32",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:46",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "03:00",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "03:14",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "03:28",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:42",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:55",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "04:09",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:23",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:37",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:51",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:05",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:32",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "05:46",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:00",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:14",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "06:28",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "06:42",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "06:55",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:09",
+              "load": 3,
+              "capacity": 75,
+              "load_rate": 0.04
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "07:23",
+              "load": 4,
+              "capacity": 75,
+              "load_rate": 0.0533
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "07:37",
+              "load": 20,
+              "capacity": 75,
+              "load_rate": 0.2667
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "07:51",
+              "load": 60,
+              "capacity": 75,
+              "load_rate": 0.8
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:05",
+              "load": 49,
+              "capacity": 75,
+              "load_rate": 0.6533
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:18",
+              "load": 75,
+              "capacity": 75,
+              "load_rate": 1.0
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:32",
+              "load": 75,
+              "capacity": 75,
+              "load_rate": 1.0
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:46",
+              "load": 63,
+              "capacity": 75,
+              "load_rate": 0.84
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 7,
+              "capacity": 75,
+              "load_rate": 0.0933
+            }
+          ]
+        },
+        {
+          "route_id": "K7",
+          "route_name": "快速公交K7线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 70,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 636,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 4747.0,
+            "avg_wait_min": 7.463836477987422,
+            "max_wait_min": 20.0,
+            "p90_wait_min": 13.0,
+            "departures": 40,
+            "max_load": 70,
+            "mean_load": 15.9,
+            "peak_load_factor": 1.0
+          },
+          "departures": [
+            "00:00",
+            "00:14",
+            "00:28",
+            "00:42",
+            "00:55",
+            "01:09",
+            "01:23",
+            "01:37",
+            "01:51",
+            "02:05",
+            "02:18",
+            "02:32",
+            "02:46",
+            "03:00",
+            "03:14",
+            "03:28",
+            "03:42",
+            "03:55",
+            "04:09",
+            "04:23",
+            "04:37",
+            "04:51",
+            "05:05",
+            "05:18",
+            "05:32",
+            "05:46",
+            "06:00",
+            "06:14",
+            "06:28",
+            "06:42",
+            "06:55",
+            "07:09",
+            "07:23",
+            "07:37",
+            "07:51",
+            "08:05",
+            "08:18",
+            "08:32",
+            "08:46",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:14",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:28",
+              "load": 14,
+              "capacity": 70,
+              "load_rate": 0.2
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:42",
+              "load": 27,
+              "capacity": 70,
+              "load_rate": 0.3857
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:55",
+              "load": 38,
+              "capacity": 70,
+              "load_rate": 0.5429
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:09",
+              "load": 58,
+              "capacity": 70,
+              "load_rate": 0.8286
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:23",
+              "load": 57,
+              "capacity": 70,
+              "load_rate": 0.8143
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:37",
+              "load": 37,
+              "capacity": 70,
+              "load_rate": 0.5286
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:51",
+              "load": 26,
+              "capacity": 70,
+              "load_rate": 0.3714
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "02:05",
+              "load": 18,
+              "capacity": 70,
+              "load_rate": 0.2571
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "02:18",
+              "load": 4,
+              "capacity": 70,
+              "load_rate": 0.0571
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "02:32",
+              "load": 1,
+              "capacity": 70,
+              "load_rate": 0.0143
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:46",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "03:00",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "03:14",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "03:28",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:42",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:55",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "04:09",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:23",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:37",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:51",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:05",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:18",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:32",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "05:46",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:00",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:14",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "06:28",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "06:42",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "06:55",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:09",
+              "load": 3,
+              "capacity": 70,
+              "load_rate": 0.0429
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "07:23",
+              "load": 4,
+              "capacity": 70,
+              "load_rate": 0.0571
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "07:37",
+              "load": 19,
+              "capacity": 70,
+              "load_rate": 0.2714
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "07:51",
+              "load": 62,
+              "capacity": 70,
+              "load_rate": 0.8857
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:05",
+              "load": 48,
+              "capacity": 70,
+              "load_rate": 0.6857
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:18",
+              "load": 70,
+              "capacity": 70,
+              "load_rate": 1.0
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:32",
+              "load": 70,
+              "capacity": 70,
+              "load_rate": 1.0
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:46",
+              "load": 70,
+              "capacity": 70,
+              "load_rate": 1.0
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 10,
+              "capacity": 70,
+              "load_rate": 0.1429
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "efficiency",
+      "summary": {
+        "passengers_served": 2545,
+        "passengers_unserved": 0,
+        "total_wait_passenger_min": 9255.0,
+        "avg_wait_min": 3.6365422396856584,
+        "max_wait_min": 17.0,
+        "p90_wait_min": 8.0,
+        "departures": 160,
+        "max_load": 45,
+        "mean_load": 15.90625,
+        "peak_load_factor": 0.6
+      },
+      "route_results": [
+        {
+          "route_id": "K12",
+          "route_name": "快速公交K12线",
+          "origin": "成都东客站东广场站",
+          "destination": "中海国际",
+          "capacity": 85,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "OSM终点站已确认",
+          "summary": {
+            "passengers_served": 637,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 2307.0,
+            "avg_wait_min": 3.621664050235479,
+            "max_wait_min": 16.0,
+            "p90_wait_min": 7.0,
+            "departures": 40,
+            "max_load": 41,
+            "mean_load": 15.925,
+            "peak_load_factor": 0.4823529411764706
+          },
+          "departures": [
+            "00:00",
+            "00:20",
+            "00:36",
+            "00:48",
+            "00:57",
+            "01:04",
+            "01:12",
+            "01:20",
+            "01:27",
+            "01:36",
+            "01:48",
+            "01:59",
+            "02:16",
+            "02:36",
+            "02:56",
+            "03:16",
+            "03:36",
+            "03:56",
+            "04:16",
+            "04:36",
+            "04:56",
+            "05:16",
+            "05:36",
+            "05:56",
+            "06:16",
+            "06:36",
+            "06:56",
+            "07:16",
+            "07:36",
+            "07:45",
+            "07:52",
+            "08:00",
+            "08:08",
+            "08:15",
+            "08:20",
+            "08:25",
+            "08:30",
+            "08:36",
+            "08:44",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:20",
+              "load": 5,
+              "capacity": 85,
+              "load_rate": 0.0588
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:36",
+              "load": 22,
+              "capacity": 85,
+              "load_rate": 0.2588
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:48",
+              "load": 28,
+              "capacity": 85,
+              "load_rate": 0.3294
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:57",
+              "load": 29,
+              "capacity": 85,
+              "load_rate": 0.3412
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:04",
+              "load": 31,
+              "capacity": 85,
+              "load_rate": 0.3647
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:12",
+              "load": 32,
+              "capacity": 85,
+              "load_rate": 0.3765
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:20",
+              "load": 33,
+              "capacity": 85,
+              "load_rate": 0.3882
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:27",
+              "load": 25,
+              "capacity": 85,
+              "load_rate": 0.2941
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "01:36",
+              "load": 22,
+              "capacity": 85,
+              "load_rate": 0.2588
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "01:48",
+              "load": 21,
+              "capacity": 85,
+              "load_rate": 0.2471
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "01:59",
+              "load": 18,
+              "capacity": 85,
+              "load_rate": 0.2118
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:16",
+              "load": 9,
+              "capacity": 85,
+              "load_rate": 0.1059
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "02:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "02:56",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "03:16",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:56",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "04:16",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:56",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "05:16",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:56",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "06:16",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "06:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:56",
+              "load": 1,
+              "capacity": 85,
+              "load_rate": 0.0118
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "07:16",
+              "load": 5,
+              "capacity": 85,
+              "load_rate": 0.0588
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "07:36",
+              "load": 19,
+              "capacity": 85,
+              "load_rate": 0.2235
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "07:45",
+              "load": 39,
+              "capacity": 85,
+              "load_rate": 0.4588
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "07:52",
+              "load": 31,
+              "capacity": 85,
+              "load_rate": 0.3647
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "08:00",
+              "load": 26,
+              "capacity": 85,
+              "load_rate": 0.3059
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "08:08",
+              "load": 32,
+              "capacity": 85,
+              "load_rate": 0.3765
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "08:15",
+              "load": 41,
+              "capacity": 85,
+              "load_rate": 0.4824
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "08:20",
+              "load": 40,
+              "capacity": 85,
+              "load_rate": 0.4706
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:25",
+              "load": 39,
+              "capacity": 85,
+              "load_rate": 0.4588
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:30",
+              "load": 33,
+              "capacity": 85,
+              "load_rate": 0.3882
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:36",
+              "load": 26,
+              "capacity": 85,
+              "load_rate": 0.3059
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:44",
+              "load": 20,
+              "capacity": 85,
+              "load_rate": 0.2353
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 10,
+              "capacity": 85,
+              "load_rate": 0.1176
+            }
+          ]
+        },
+        {
+          "route_id": "K4",
+          "route_name": "快速公交K4线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 80,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 637,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 2327.0,
+            "avg_wait_min": 3.6530612244897958,
+            "max_wait_min": 16.0,
+            "p90_wait_min": 8.0,
+            "departures": 40,
+            "max_load": 42,
+            "mean_load": 15.925,
+            "peak_load_factor": 0.525
+          },
+          "departures": [
+            "00:00",
+            "00:20",
+            "00:34",
+            "00:45",
+            "00:55",
+            "01:02",
+            "01:10",
+            "01:18",
+            "01:26",
+            "01:37",
+            "01:49",
+            "02:00",
+            "02:17",
+            "02:37",
+            "02:57",
+            "03:17",
+            "03:37",
+            "03:57",
+            "04:17",
+            "04:37",
+            "04:57",
+            "05:17",
+            "05:37",
+            "05:57",
+            "06:17",
+            "06:37",
+            "06:57",
+            "07:17",
+            "07:37",
+            "07:44",
+            "07:50",
+            "07:57",
+            "08:05",
+            "08:12",
+            "08:18",
+            "08:23",
+            "08:28",
+            "08:35",
+            "08:45",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:20",
+              "load": 5,
+              "capacity": 80,
+              "load_rate": 0.0625
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:34",
+              "load": 21,
+              "capacity": 80,
+              "load_rate": 0.2625
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:45",
+              "load": 25,
+              "capacity": 80,
+              "load_rate": 0.3125
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:55",
+              "load": 29,
+              "capacity": 80,
+              "load_rate": 0.3625
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:02",
+              "load": 30,
+              "capacity": 80,
+              "load_rate": 0.375
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:10",
+              "load": 33,
+              "capacity": 80,
+              "load_rate": 0.4125
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:18",
+              "load": 33,
+              "capacity": 80,
+              "load_rate": 0.4125
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:26",
+              "load": 32,
+              "capacity": 80,
+              "load_rate": 0.4
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "01:37",
+              "load": 24,
+              "capacity": 80,
+              "load_rate": 0.3
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "01:49",
+              "load": 23,
+              "capacity": 80,
+              "load_rate": 0.2875
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "02:00",
+              "load": 17,
+              "capacity": 80,
+              "load_rate": 0.2125
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:17",
+              "load": 8,
+              "capacity": 80,
+              "load_rate": 0.1
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "02:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "02:57",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "03:17",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:57",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "04:17",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:57",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "05:17",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:57",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "06:17",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "06:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:57",
+              "load": 1,
+              "capacity": 80,
+              "load_rate": 0.0125
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "07:17",
+              "load": 5,
+              "capacity": 80,
+              "load_rate": 0.0625
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "07:37",
+              "load": 22,
+              "capacity": 80,
+              "load_rate": 0.275
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "07:44",
+              "load": 30,
+              "capacity": 80,
+              "load_rate": 0.375
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "07:50",
+              "load": 29,
+              "capacity": 80,
+              "load_rate": 0.3625
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:57",
+              "load": 25,
+              "capacity": 80,
+              "load_rate": 0.3125
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "08:05",
+              "load": 29,
+              "capacity": 80,
+              "load_rate": 0.3625
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "08:12",
+              "load": 34,
+              "capacity": 80,
+              "load_rate": 0.425
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "08:18",
+              "load": 42,
+              "capacity": 80,
+              "load_rate": 0.525
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:23",
+              "load": 41,
+              "capacity": 80,
+              "load_rate": 0.5125
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:28",
+              "load": 37,
+              "capacity": 80,
+              "load_rate": 0.4625
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:35",
+              "load": 34,
+              "capacity": 80,
+              "load_rate": 0.425
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:45",
+              "load": 20,
+              "capacity": 80,
+              "load_rate": 0.25
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 8,
+              "capacity": 80,
+              "load_rate": 0.1
+            }
+          ]
+        },
+        {
+          "route_id": "K6",
+          "route_name": "快速公交K6线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 75,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 635,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 2315.0,
+            "avg_wait_min": 3.645669291338583,
+            "max_wait_min": 17.0,
+            "p90_wait_min": 7.0,
+            "departures": 40,
+            "max_load": 45,
+            "mean_load": 15.875,
+            "peak_load_factor": 0.6
+          },
+          "departures": [
+            "00:00",
+            "00:20",
+            "00:35",
+            "00:46",
+            "00:54",
+            "01:02",
+            "01:10",
+            "01:18",
+            "01:26",
+            "01:34",
+            "01:46",
+            "01:54",
+            "02:02",
+            "02:18",
+            "02:38",
+            "02:58",
+            "03:18",
+            "03:38",
+            "03:58",
+            "04:18",
+            "04:38",
+            "04:58",
+            "05:18",
+            "05:38",
+            "05:58",
+            "06:18",
+            "06:38",
+            "06:58",
+            "07:18",
+            "07:38",
+            "07:46",
+            "07:54",
+            "08:02",
+            "08:10",
+            "08:17",
+            "08:22",
+            "08:27",
+            "08:33",
+            "08:42",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:20",
+              "load": 5,
+              "capacity": 75,
+              "load_rate": 0.0667
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:35",
+              "load": 22,
+              "capacity": 75,
+              "load_rate": 0.2933
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:46",
+              "load": 26,
+              "capacity": 75,
+              "load_rate": 0.3467
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:54",
+              "load": 22,
+              "capacity": 75,
+              "load_rate": 0.2933
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:02",
+              "load": 34,
+              "capacity": 75,
+              "load_rate": 0.4533
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:10",
+              "load": 32,
+              "capacity": 75,
+              "load_rate": 0.4267
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:18",
+              "load": 33,
+              "capacity": 75,
+              "load_rate": 0.44
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:26",
+              "load": 32,
+              "capacity": 75,
+              "load_rate": 0.4267
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "01:34",
+              "load": 20,
+              "capacity": 75,
+              "load_rate": 0.2667
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "01:46",
+              "load": 20,
+              "capacity": 75,
+              "load_rate": 0.2667
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "01:54",
+              "load": 17,
+              "capacity": 75,
+              "load_rate": 0.2267
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:02",
+              "load": 9,
+              "capacity": 75,
+              "load_rate": 0.12
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "02:18",
+              "load": 7,
+              "capacity": 75,
+              "load_rate": 0.0933
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "02:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "02:58",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "03:58",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:58",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:58",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "06:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:58",
+              "load": 1,
+              "capacity": 75,
+              "load_rate": 0.0133
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "07:18",
+              "load": 5,
+              "capacity": 75,
+              "load_rate": 0.0667
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "07:38",
+              "load": 25,
+              "capacity": 75,
+              "load_rate": 0.3333
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "07:46",
+              "load": 37,
+              "capacity": 75,
+              "load_rate": 0.4933
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:54",
+              "load": 31,
+              "capacity": 75,
+              "load_rate": 0.4133
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "08:02",
+              "load": 26,
+              "capacity": 75,
+              "load_rate": 0.3467
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "08:10",
+              "load": 36,
+              "capacity": 75,
+              "load_rate": 0.48
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "08:17",
+              "load": 45,
+              "capacity": 75,
+              "load_rate": 0.6
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:22",
+              "load": 42,
+              "capacity": 75,
+              "load_rate": 0.56
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:27",
+              "load": 39,
+              "capacity": 75,
+              "load_rate": 0.52
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:33",
+              "load": 33,
+              "capacity": 75,
+              "load_rate": 0.44
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:42",
+              "load": 24,
+              "capacity": 75,
+              "load_rate": 0.32
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 12,
+              "capacity": 75,
+              "load_rate": 0.16
+            }
+          ]
+        },
+        {
+          "route_id": "K7",
+          "route_name": "快速公交K7线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 70,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 636,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 2306.0,
+            "avg_wait_min": 3.6257861635220126,
+            "max_wait_min": 17.0,
+            "p90_wait_min": 7.0,
+            "departures": 40,
+            "max_load": 42,
+            "mean_load": 15.9,
+            "peak_load_factor": 0.6
+          },
+          "departures": [
+            "00:00",
+            "00:20",
+            "00:35",
+            "00:46",
+            "00:55",
+            "01:03",
+            "01:11",
+            "01:19",
+            "01:27",
+            "01:35",
+            "01:49",
+            "02:01",
+            "02:19",
+            "02:39",
+            "02:59",
+            "03:19",
+            "03:39",
+            "03:59",
+            "04:19",
+            "04:39",
+            "04:59",
+            "05:19",
+            "05:39",
+            "05:59",
+            "06:19",
+            "06:39",
+            "06:59",
+            "07:19",
+            "07:38",
+            "07:45",
+            "07:51",
+            "07:59",
+            "08:07",
+            "08:14",
+            "08:19",
+            "08:24",
+            "08:29",
+            "08:35",
+            "08:43",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:20",
+              "load": 5,
+              "capacity": 70,
+              "load_rate": 0.0714
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:35",
+              "load": 21,
+              "capacity": 70,
+              "load_rate": 0.3
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:46",
+              "load": 25,
+              "capacity": 70,
+              "load_rate": 0.3571
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:55",
+              "load": 28,
+              "capacity": 70,
+              "load_rate": 0.4
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:03",
+              "load": 34,
+              "capacity": 70,
+              "load_rate": 0.4857
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:11",
+              "load": 32,
+              "capacity": 70,
+              "load_rate": 0.4571
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:19",
+              "load": 33,
+              "capacity": 70,
+              "load_rate": 0.4714
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:27",
+              "load": 31,
+              "capacity": 70,
+              "load_rate": 0.4429
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "01:35",
+              "load": 20,
+              "capacity": 70,
+              "load_rate": 0.2857
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "01:49",
+              "load": 24,
+              "capacity": 70,
+              "load_rate": 0.3429
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "02:01",
+              "load": 19,
+              "capacity": 70,
+              "load_rate": 0.2714
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:19",
+              "load": 8,
+              "capacity": 70,
+              "load_rate": 0.1143
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "02:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "02:59",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "03:19",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:59",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "04:19",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:59",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "05:19",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:59",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "06:19",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "06:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:59",
+              "load": 1,
+              "capacity": 70,
+              "load_rate": 0.0143
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "07:19",
+              "load": 5,
+              "capacity": 70,
+              "load_rate": 0.0714
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "07:38",
+              "load": 24,
+              "capacity": 70,
+              "load_rate": 0.3429
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "07:45",
+              "load": 32,
+              "capacity": 70,
+              "load_rate": 0.4571
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "07:51",
+              "load": 26,
+              "capacity": 70,
+              "load_rate": 0.3714
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:59",
+              "load": 26,
+              "capacity": 70,
+              "load_rate": 0.3714
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "08:07",
+              "load": 31,
+              "capacity": 70,
+              "load_rate": 0.4429
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "08:14",
+              "load": 38,
+              "capacity": 70,
+              "load_rate": 0.5429
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "08:19",
+              "load": 38,
+              "capacity": 70,
+              "load_rate": 0.5429
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:24",
+              "load": 42,
+              "capacity": 70,
+              "load_rate": 0.6
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:29",
+              "load": 34,
+              "capacity": 70,
+              "load_rate": 0.4857
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:35",
+              "load": 28,
+              "capacity": 70,
+              "load_rate": 0.4
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:43",
+              "load": 20,
+              "capacity": 70,
+              "load_rate": 0.2857
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 11,
+              "capacity": 70,
+              "load_rate": 0.1571
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "fairness",
+      "summary": {
+        "passengers_served": 2545,
+        "passengers_unserved": 0,
+        "total_wait_passenger_min": 10533.0,
+        "avg_wait_min": 4.138703339882122,
+        "max_wait_min": 9.0,
+        "p90_wait_min": 8.0,
+        "departures": 160,
+        "max_load": 67,
+        "mean_load": 15.90625,
+        "peak_load_factor": 0.9285714285714286
+      },
+      "route_results": [
+        {
+          "route_id": "K12",
+          "route_name": "快速公交K12线",
+          "origin": "成都东客站东广场站",
+          "destination": "中海国际",
+          "capacity": 85,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "OSM终点站已确认",
+          "summary": {
+            "passengers_served": 637,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 2640.0,
+            "avg_wait_min": 4.144427001569858,
+            "max_wait_min": 9.0,
+            "p90_wait_min": 8.0,
+            "departures": 40,
+            "max_load": 67,
+            "mean_load": 15.925,
+            "peak_load_factor": 0.788235294117647
+          },
+          "departures": [
+            "00:00",
+            "00:20",
+            "00:30",
+            "00:40",
+            "00:50",
+            "01:00",
+            "01:08",
+            "01:16",
+            "01:24",
+            "01:34",
+            "01:44",
+            "01:54",
+            "02:04",
+            "02:16",
+            "02:36",
+            "02:56",
+            "03:16",
+            "03:36",
+            "03:56",
+            "04:16",
+            "04:36",
+            "04:56",
+            "05:16",
+            "05:36",
+            "05:56",
+            "06:16",
+            "06:36",
+            "06:56",
+            "07:08",
+            "07:20",
+            "07:33",
+            "07:43",
+            "07:52",
+            "08:02",
+            "08:12",
+            "08:21",
+            "08:30",
+            "08:40",
+            "08:50",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:20",
+              "load": 5,
+              "capacity": 85,
+              "load_rate": 0.0588
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:30",
+              "load": 11,
+              "capacity": 85,
+              "load_rate": 0.1294
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:40",
+              "load": 20,
+              "capacity": 85,
+              "load_rate": 0.2353
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:50",
+              "load": 24,
+              "capacity": 85,
+              "load_rate": 0.2824
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:00",
+              "load": 37,
+              "capacity": 85,
+              "load_rate": 0.4353
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:08",
+              "load": 34,
+              "capacity": 85,
+              "load_rate": 0.4
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:16",
+              "load": 32,
+              "capacity": 85,
+              "load_rate": 0.3765
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:24",
+              "load": 33,
+              "capacity": 85,
+              "load_rate": 0.3882
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "01:34",
+              "load": 27,
+              "capacity": 85,
+              "load_rate": 0.3176
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "01:44",
+              "load": 16,
+              "capacity": 85,
+              "load_rate": 0.1882
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "01:54",
+              "load": 20,
+              "capacity": 85,
+              "load_rate": 0.2353
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:04",
+              "load": 12,
+              "capacity": 85,
+              "load_rate": 0.1412
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "02:16",
+              "load": 4,
+              "capacity": 85,
+              "load_rate": 0.0471
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "02:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "02:56",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:16",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "03:56",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:16",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:56",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:16",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:56",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "06:16",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:36",
+              "load": 0,
+              "capacity": 85,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:56",
+              "load": 1,
+              "capacity": 85,
+              "load_rate": 0.0118
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "07:08",
+              "load": 3,
+              "capacity": 85,
+              "load_rate": 0.0353
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "07:20",
+              "load": 3,
+              "capacity": 85,
+              "load_rate": 0.0353
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "07:33",
+              "load": 10,
+              "capacity": 85,
+              "load_rate": 0.1176
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:43",
+              "load": 37,
+              "capacity": 85,
+              "load_rate": 0.4353
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "07:52",
+              "load": 41,
+              "capacity": 85,
+              "load_rate": 0.4824
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "08:02",
+              "load": 32,
+              "capacity": 85,
+              "load_rate": 0.3765
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "08:12",
+              "load": 48,
+              "capacity": 85,
+              "load_rate": 0.5647
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:21",
+              "load": 67,
+              "capacity": 85,
+              "load_rate": 0.7882
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:30",
+              "load": 64,
+              "capacity": 85,
+              "load_rate": 0.7529
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:40",
+              "load": 38,
+              "capacity": 85,
+              "load_rate": 0.4471
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:50",
+              "load": 13,
+              "capacity": 85,
+              "load_rate": 0.1529
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 5,
+              "capacity": 85,
+              "load_rate": 0.0588
+            }
+          ]
+        },
+        {
+          "route_id": "K4",
+          "route_name": "快速公交K4线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 80,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 637,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 2654.0,
+            "avg_wait_min": 4.166405023547881,
+            "max_wait_min": 9.0,
+            "p90_wait_min": 8.0,
+            "departures": 40,
+            "max_load": 61,
+            "mean_load": 15.925,
+            "peak_load_factor": 0.7625
+          },
+          "departures": [
+            "00:00",
+            "00:20",
+            "00:29",
+            "00:39",
+            "00:49",
+            "00:59",
+            "01:08",
+            "01:17",
+            "01:25",
+            "01:35",
+            "01:45",
+            "01:55",
+            "02:05",
+            "02:17",
+            "02:37",
+            "02:57",
+            "03:17",
+            "03:37",
+            "03:57",
+            "04:17",
+            "04:37",
+            "04:57",
+            "05:17",
+            "05:37",
+            "05:57",
+            "06:17",
+            "06:37",
+            "06:57",
+            "07:09",
+            "07:21",
+            "07:33",
+            "07:43",
+            "07:53",
+            "08:03",
+            "08:13",
+            "08:21",
+            "08:29",
+            "08:39",
+            "08:49",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:20",
+              "load": 5,
+              "capacity": 80,
+              "load_rate": 0.0625
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:29",
+              "load": 12,
+              "capacity": 80,
+              "load_rate": 0.15
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:39",
+              "load": 19,
+              "capacity": 80,
+              "load_rate": 0.2375
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:49",
+              "load": 25,
+              "capacity": 80,
+              "load_rate": 0.3125
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "00:59",
+              "load": 35,
+              "capacity": 80,
+              "load_rate": 0.4375
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:08",
+              "load": 39,
+              "capacity": 80,
+              "load_rate": 0.4875
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:17",
+              "load": 37,
+              "capacity": 80,
+              "load_rate": 0.4625
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:25",
+              "load": 33,
+              "capacity": 80,
+              "load_rate": 0.4125
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "01:35",
+              "load": 23,
+              "capacity": 80,
+              "load_rate": 0.2875
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "01:45",
+              "load": 18,
+              "capacity": 80,
+              "load_rate": 0.225
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "01:55",
+              "load": 19,
+              "capacity": 80,
+              "load_rate": 0.2375
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:05",
+              "load": 11,
+              "capacity": 80,
+              "load_rate": 0.1375
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "02:17",
+              "load": 4,
+              "capacity": 80,
+              "load_rate": 0.05
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "02:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "02:57",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:17",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "03:57",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:17",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:57",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:17",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:57",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "06:17",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:37",
+              "load": 0,
+              "capacity": 80,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:57",
+              "load": 1,
+              "capacity": 80,
+              "load_rate": 0.0125
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "07:09",
+              "load": 3,
+              "capacity": 80,
+              "load_rate": 0.0375
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "07:21",
+              "load": 3,
+              "capacity": 80,
+              "load_rate": 0.0375
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "07:33",
+              "load": 11,
+              "capacity": 80,
+              "load_rate": 0.1375
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:43",
+              "load": 35,
+              "capacity": 80,
+              "load_rate": 0.4375
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "07:53",
+              "load": 46,
+              "capacity": 80,
+              "load_rate": 0.575
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "08:03",
+              "load": 33,
+              "capacity": 80,
+              "load_rate": 0.4125
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "08:13",
+              "load": 49,
+              "capacity": 80,
+              "load_rate": 0.6125
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:21",
+              "load": 61,
+              "capacity": 80,
+              "load_rate": 0.7625
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:29",
+              "load": 59,
+              "capacity": 80,
+              "load_rate": 0.7375
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:39",
+              "load": 38,
+              "capacity": 80,
+              "load_rate": 0.475
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:49",
+              "load": 14,
+              "capacity": 80,
+              "load_rate": 0.175
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 4,
+              "capacity": 80,
+              "load_rate": 0.05
+            }
+          ]
+        },
+        {
+          "route_id": "K6",
+          "route_name": "快速公交K6线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 75,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 635,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 2628.0,
+            "avg_wait_min": 4.138582677165354,
+            "max_wait_min": 9.0,
+            "p90_wait_min": 8.0,
+            "departures": 40,
+            "max_load": 63,
+            "mean_load": 15.875,
+            "peak_load_factor": 0.84
+          },
+          "departures": [
+            "00:00",
+            "00:20",
+            "00:30",
+            "00:40",
+            "00:50",
+            "01:00",
+            "01:09",
+            "01:18",
+            "01:26",
+            "01:36",
+            "01:46",
+            "01:56",
+            "02:06",
+            "02:18",
+            "02:38",
+            "02:58",
+            "03:18",
+            "03:38",
+            "03:58",
+            "04:18",
+            "04:38",
+            "04:58",
+            "05:18",
+            "05:38",
+            "05:58",
+            "06:18",
+            "06:38",
+            "06:58",
+            "07:10",
+            "07:22",
+            "07:34",
+            "07:44",
+            "07:54",
+            "08:04",
+            "08:14",
+            "08:22",
+            "08:30",
+            "08:40",
+            "08:50",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:20",
+              "load": 5,
+              "capacity": 75,
+              "load_rate": 0.0667
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:30",
+              "load": 13,
+              "capacity": 75,
+              "load_rate": 0.1733
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:40",
+              "load": 20,
+              "capacity": 75,
+              "load_rate": 0.2667
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:50",
+              "load": 25,
+              "capacity": 75,
+              "load_rate": 0.3333
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:00",
+              "load": 36,
+              "capacity": 75,
+              "load_rate": 0.48
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:09",
+              "load": 38,
+              "capacity": 75,
+              "load_rate": 0.5067
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:18",
+              "load": 37,
+              "capacity": 75,
+              "load_rate": 0.4933
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:26",
+              "load": 32,
+              "capacity": 75,
+              "load_rate": 0.4267
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "01:36",
+              "load": 22,
+              "capacity": 75,
+              "load_rate": 0.2933
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "01:46",
+              "load": 18,
+              "capacity": 75,
+              "load_rate": 0.24
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "01:56",
+              "load": 19,
+              "capacity": 75,
+              "load_rate": 0.2533
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:06",
+              "load": 10,
+              "capacity": 75,
+              "load_rate": 0.1333
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "02:18",
+              "load": 4,
+              "capacity": 75,
+              "load_rate": 0.0533
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "02:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "02:58",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "03:58",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:58",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:58",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "06:18",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:38",
+              "load": 0,
+              "capacity": 75,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:58",
+              "load": 1,
+              "capacity": 75,
+              "load_rate": 0.0133
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "07:10",
+              "load": 3,
+              "capacity": 75,
+              "load_rate": 0.04
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "07:22",
+              "load": 3,
+              "capacity": 75,
+              "load_rate": 0.04
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "07:34",
+              "load": 12,
+              "capacity": 75,
+              "load_rate": 0.16
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:44",
+              "load": 39,
+              "capacity": 75,
+              "load_rate": 0.52
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "07:54",
+              "load": 41,
+              "capacity": 75,
+              "load_rate": 0.5467
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "08:04",
+              "load": 33,
+              "capacity": 75,
+              "load_rate": 0.44
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "08:14",
+              "load": 53,
+              "capacity": 75,
+              "load_rate": 0.7067
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:22",
+              "load": 63,
+              "capacity": 75,
+              "load_rate": 0.84
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:30",
+              "load": 57,
+              "capacity": 75,
+              "load_rate": 0.76
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:40",
+              "load": 35,
+              "capacity": 75,
+              "load_rate": 0.4667
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:50",
+              "load": 13,
+              "capacity": 75,
+              "load_rate": 0.1733
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 3,
+              "capacity": 75,
+              "load_rate": 0.04
+            }
+          ]
+        },
+        {
+          "route_id": "K7",
+          "route_name": "快速公交K7线",
+          "origin": "成都东站片区",
+          "destination": "线路远端",
+          "capacity": 70,
+          "service_start": "00:00",
+          "service_end": "09:00",
+          "planned_trips": 40,
+          "verification": "站点位于OSM检索缓冲区，具体上客站待核验",
+          "summary": {
+            "passengers_served": 636,
+            "passengers_unserved": 0,
+            "total_wait_passenger_min": 2611.0,
+            "avg_wait_min": 4.105345911949685,
+            "max_wait_min": 9.0,
+            "p90_wait_min": 8.0,
+            "departures": 40,
+            "max_load": 65,
+            "mean_load": 15.9,
+            "peak_load_factor": 0.9285714285714286
+          },
+          "departures": [
+            "00:00",
+            "00:20",
+            "00:30",
+            "00:40",
+            "00:50",
+            "01:00",
+            "01:09",
+            "01:19",
+            "01:27",
+            "01:37",
+            "01:47",
+            "01:57",
+            "02:07",
+            "02:19",
+            "02:39",
+            "02:59",
+            "03:19",
+            "03:39",
+            "03:59",
+            "04:19",
+            "04:39",
+            "04:59",
+            "05:19",
+            "05:39",
+            "05:59",
+            "06:19",
+            "06:39",
+            "06:59",
+            "07:11",
+            "07:23",
+            "07:35",
+            "07:45",
+            "07:55",
+            "08:05",
+            "08:15",
+            "08:23",
+            "08:31",
+            "08:40",
+            "08:50",
+            "09:00"
+          ],
+          "timetable": [
+            {
+              "trip_no": 1,
+              "departure_time": "00:00",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 2,
+              "departure_time": "00:20",
+              "load": 5,
+              "capacity": 70,
+              "load_rate": 0.0714
+            },
+            {
+              "trip_no": 3,
+              "departure_time": "00:30",
+              "load": 12,
+              "capacity": 70,
+              "load_rate": 0.1714
+            },
+            {
+              "trip_no": 4,
+              "departure_time": "00:40",
+              "load": 20,
+              "capacity": 70,
+              "load_rate": 0.2857
+            },
+            {
+              "trip_no": 5,
+              "departure_time": "00:50",
+              "load": 25,
+              "capacity": 70,
+              "load_rate": 0.3571
+            },
+            {
+              "trip_no": 6,
+              "departure_time": "01:00",
+              "load": 37,
+              "capacity": 70,
+              "load_rate": 0.5286
+            },
+            {
+              "trip_no": 7,
+              "departure_time": "01:09",
+              "load": 38,
+              "capacity": 70,
+              "load_rate": 0.5429
+            },
+            {
+              "trip_no": 8,
+              "departure_time": "01:19",
+              "load": 41,
+              "capacity": 70,
+              "load_rate": 0.5857
+            },
+            {
+              "trip_no": 9,
+              "departure_time": "01:27",
+              "load": 31,
+              "capacity": 70,
+              "load_rate": 0.4429
+            },
+            {
+              "trip_no": 10,
+              "departure_time": "01:37",
+              "load": 22,
+              "capacity": 70,
+              "load_rate": 0.3143
+            },
+            {
+              "trip_no": 11,
+              "departure_time": "01:47",
+              "load": 18,
+              "capacity": 70,
+              "load_rate": 0.2571
+            },
+            {
+              "trip_no": 12,
+              "departure_time": "01:57",
+              "load": 18,
+              "capacity": 70,
+              "load_rate": 0.2571
+            },
+            {
+              "trip_no": 13,
+              "departure_time": "02:07",
+              "load": 10,
+              "capacity": 70,
+              "load_rate": 0.1429
+            },
+            {
+              "trip_no": 14,
+              "departure_time": "02:19",
+              "load": 3,
+              "capacity": 70,
+              "load_rate": 0.0429
+            },
+            {
+              "trip_no": 15,
+              "departure_time": "02:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 16,
+              "departure_time": "02:59",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 17,
+              "departure_time": "03:19",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 18,
+              "departure_time": "03:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 19,
+              "departure_time": "03:59",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 20,
+              "departure_time": "04:19",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 21,
+              "departure_time": "04:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 22,
+              "departure_time": "04:59",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 23,
+              "departure_time": "05:19",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 24,
+              "departure_time": "05:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 25,
+              "departure_time": "05:59",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 26,
+              "departure_time": "06:19",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 27,
+              "departure_time": "06:39",
+              "load": 0,
+              "capacity": 70,
+              "load_rate": 0.0
+            },
+            {
+              "trip_no": 28,
+              "departure_time": "06:59",
+              "load": 1,
+              "capacity": 70,
+              "load_rate": 0.0143
+            },
+            {
+              "trip_no": 29,
+              "departure_time": "07:11",
+              "load": 3,
+              "capacity": 70,
+              "load_rate": 0.0429
+            },
+            {
+              "trip_no": 30,
+              "departure_time": "07:23",
+              "load": 3,
+              "capacity": 70,
+              "load_rate": 0.0429
+            },
+            {
+              "trip_no": 31,
+              "departure_time": "07:35",
+              "load": 14,
+              "capacity": 70,
+              "load_rate": 0.2
+            },
+            {
+              "trip_no": 32,
+              "departure_time": "07:45",
+              "load": 41,
+              "capacity": 70,
+              "load_rate": 0.5857
+            },
+            {
+              "trip_no": 33,
+              "departure_time": "07:55",
+              "load": 39,
+              "capacity": 70,
+              "load_rate": 0.5571
+            },
+            {
+              "trip_no": 34,
+              "departure_time": "08:05",
+              "load": 35,
+              "capacity": 70,
+              "load_rate": 0.5
+            },
+            {
+              "trip_no": 35,
+              "departure_time": "08:15",
+              "load": 54,
+              "capacity": 70,
+              "load_rate": 0.7714
+            },
+            {
+              "trip_no": 36,
+              "departure_time": "08:23",
+              "load": 65,
+              "capacity": 70,
+              "load_rate": 0.9286
+            },
+            {
+              "trip_no": 37,
+              "departure_time": "08:31",
+              "load": 54,
+              "capacity": 70,
+              "load_rate": 0.7714
+            },
+            {
+              "trip_no": 38,
+              "departure_time": "08:40",
+              "load": 30,
+              "capacity": 70,
+              "load_rate": 0.4286
+            },
+            {
+              "trip_no": 39,
+              "departure_time": "08:50",
+              "load": 13,
+              "capacity": 70,
+              "load_rate": 0.1857
+            },
+            {
+              "trip_no": 40,
+              "departure_time": "09:00",
+              "load": 4,
+              "capacity": 70,
+              "load_rate": 0.0571
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
